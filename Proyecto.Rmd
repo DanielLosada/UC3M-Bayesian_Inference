@@ -9,8 +9,9 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+Dataset: https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database
 
+## R Markdown
 
 ```{r cars}
 library(dplyr)
