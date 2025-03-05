@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Dataset: https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database
+MCMClogit: https://www.rdocumentation.org/packages/MCMCpack/versions/1.7-1/topics/MCMClogit
 
 ## R Markdown
 
