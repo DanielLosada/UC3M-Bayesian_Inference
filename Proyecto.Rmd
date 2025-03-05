@@ -1,0 +1,78 @@
+---
+title: "Bayesian Diabetes"
+author: "Laura Carralero"
+date: "5/3/2025"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r cars}
+library(dplyr)
+data <- read.csv("diabetes.csv")
+data <- data%>% dplyr::select(Glucose, BMI, Outcome)
+```
+
+
+```{r}
+plot(data$BMI, data$BMI)
+```
+
+
+Logit regresion using MCMC
+
+
+```{r}
+library(MCMCpack)
+
+out = MCMClogit(Outcome~ Glucose + BMI, data= data, burnin=1000, mcmc=21000)
+
+plot(out)
+
+```
+```{r}
+summary(out)
+
+```
+
+We compare with a classical regression
+
+```{r}
+classic = glm (Outcome~ Glucose + BMI, data= data, family = binomial)
+summary(classic)
+```
+
+
+
+```{r}
+#classic = glm (, family = binomial)
+#summary(classic)
+```
+
+classic = glm (y~x, family = binomial)
+summary(classic)
+
+```{r}
+library(boot)
+BMI = 10
+glucose=90
+fail.prob=inv.logit(out[,1]+BMI*out[,2] + glucose*out[,3])
+y.pred <- rbinom(10000, size =1,  fail.prob )
+
+
+
+barplot(table(y.pred))
+```
+
+
+
+
+
+
+
+
